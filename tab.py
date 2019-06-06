@@ -1,4 +1,4 @@
-#essa é uma função para exibir o tabuleiro
+#ESSA É UMA FUNÇÃO APENAS PARA EXIBIR O TABULEIRO
 def tabuleiro(tab):
 	print("    A   B   C   D   E   F   G   H   I   J")
 	for i in range(0, 10):
