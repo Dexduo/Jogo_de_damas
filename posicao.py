@@ -178,12 +178,13 @@ def nova_pos(tab, peca, jogador_vez, lin1, col1, lin2, col2):
 	if peca == "normal":
 
 		if jogador_vez=="C":
-
+			#AQUI VAI CHECAR SE TEM UMA PEÇA ADVERSÁRIA
 			if tab[int((lin1+lin2)/2)][int((col1+col2)/2)] == "@" or tab[int((lin1+lin2)/2)][int((col1+col2)/2)] == "&":
 				tab[int((lin1+lin2)/2)][int((col1+col2)/2)] = " "
 				tab[lin1][col1] = " "
 				tab[lin2][col2] = "o" 
 
+			#AQUI É NO CASO DE NÃO TER PEÇAS ADVERSÁRIAS E O USUARIO TENTAR PULAR MAIS DE UMA CASA
 			if (lin1-lin2 >= 1 and (col1==col2+1 or col1==col2-1)) or (lin2>lin1+1) or (tab[lin2][col2] != " "):
 				print("Jogada invalida") 
 			else:
@@ -191,12 +192,13 @@ def nova_pos(tab, peca, jogador_vez, lin1, col1, lin2, col2):
 				tab[lin2][col2] = "o"
 
 		if jogador_vez=="B":
-
+			#AQUI VAI CHECAR SE TEM UMA PEÇA ADVERSÁRIA
 			if tab[int((lin1+lin2)/2)][int((col1+col2)/2)] == "o" or tab[int((lin1+lin2)/2)][int((col1+col2)/2)] == "O":
 				tab[int((lin1+lin2)/2)][int((col1+col2)/2)] = " "
 				tab[lin1][col1] = " "
 				tab[lin2][col2] = "@" 
 
+			#AQUI É NO CASO DE NÃO TER PEÇAS ADVERSÁRIAS E O USUARIO TENTAR PULAR MAIS DE UMA CASA
 			if (lin2-lin1 >= 1 and (col1==col2+1 or col1==col2-1)) or (lin1>lin2+1) or (tab[lin2][col2] != " "):
 				print("Jogada invalida") 
 			else:
