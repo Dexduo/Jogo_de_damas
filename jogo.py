@@ -1,5 +1,5 @@
 from tab import tabuleiro
-from posicao import nova_pos
+from jogada import posicao
 from transformar import normal_dama
 
 tab = [
@@ -36,14 +36,14 @@ while qtd_cima != 0 or qtd_baixo !=0:
 	#AQUI VAI SER CHECADO SE A PEÇA DA VEZ É NORMAL OU DAMA
 	if (tab[lin1][col1] == "@" or tab[lin1][col1] == "o"):
 		peca = "normal"
+		posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
 	else:
 		if tab[lin1][col1] == "&" or tab[lin1][col1] == "O":
 			peca = "dama"
+			posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
 		else:
 			peca = "invalida"
-
-
-	nova_pos(tab, peca, jogador_vez, lin1, col1, lin2, col2)
+	#nova_pos(tab, peca, jogador_vez, lin1, col1, lin2, col2)
 	normal_dama(tab)
 
 	#AQUI EU FIZ UM LAÇO PARA CONTAR O NUMERO DE PEÇAS
