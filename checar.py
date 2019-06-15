@@ -1,7 +1,8 @@
 #essa é uma função para checar a chance de comida
-def checar(tab, comer):
+def checar_normal(tab, comer):
 	comer = 0
 	#AQUI FIZ UM LAÇO PRA CHECAR SE TEM PECAS ADVERSÁRIAS AO REDOR	
+
 	for k in range(0, 10):
 		for h in range(0, 10):
 			if tab[k][h] == "@":
@@ -120,3 +121,7 @@ def checar(tab, comer):
 
 
 	return comer
+
+
+def checar_dama():
+	return 0

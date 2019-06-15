@@ -1,4 +1,5 @@
-from checar import checar
+from checar import checar_normal
+from checar import checar_dama
 def posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada):
 
 	coluna = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
@@ -9,15 +10,15 @@ def posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada):
 	col2 = coluna[jogada[4]]
 	lin2 = linha[jogada[5]]
 
-	conf = 1
 	comer = 0
 
 	if jogador_vez != "C" and jogador_vez != "B":
-		jogador_vez = input("Usuário invalido, quem vai jogar agora?: ")
+		print("Jogada Invalida")
+		jogador_vez = input("Refaça sua jogada: ")
 		posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
 
 	else:
-		#PRIMEIRAMENTE IREI CHECAR SE A PEÇA É NORMAL
+		#IREI CHECAR SE A PEÇA É NORMAL
 		if peca == "normal":
 			#AQUI SE A PEÇA FOR NORMAL E TENTAR PULAR MAIS DE 2 CASAS É INVALIDA
 			if int(((lin2-lin1)**2)**(1/2))>2 or int(((col2-col1)**2)**(1/2))>2 or tab[lin2][col2] != " ":
@@ -29,7 +30,7 @@ def posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada):
 	 			#SE QUEM JOGAR FOR AS NORMAIS DE BAIXO:
 				if jogador_vez == "B":
 					
-					comer = checar(tab, comer)
+					comer = checar_normal(tab, comer)
 					
 					lin_chance = int(((( (lin1)**2)**(1/2) ) + (( (lin2)**2)**(1/2) ))/2)
 					col_chance = int(((( (col1)**2)**(1/2) ) + (( (col2)**2)**(1/2) ))/2)
@@ -60,7 +61,7 @@ def posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada):
 				#SE QUEM JOGAR FOR AS NORMAIS DE CIMA:
 				if jogador_vez == "C":
 					
-					comer = checar(tab, comer)
+					comer = checar_normal(tab, comer)
 					
 					lin_chance = int(((( (lin1)**2)**(1/2) ) + (( (lin2)**2)**(1/2) ))/2)
 					col_chance = int(((( (col1)**2)**(1/2) ) + (( (col2)**2)**(1/2) ))/2)
@@ -86,6 +87,23 @@ def posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada):
 							#SE NÃO PULOU MAIS DE UMA CASA EU ATUALIZO O TABULEIRO
 							tab[lin2][col2] = tab[lin1][col1]
 							tab[lin1][col1] = " "
+
+		
+
+
+		#IREI CHECAR SE A PEÇA É DAMA
+		#if peca == "dama":
+			#SE QUEM FOR JOGAR FOR AS DAMAS DE BAIXO:
+			
+
+
+
+
+
+		if peca == "invalida":
+			print("Jogada Invalida")
+			jogada = input("Refaça sua jogada: ")
+			posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
 
 
 

@@ -1,3 +1,4 @@
+import sys
 from tab import tabuleiro
 from jogada import posicao
 from transformar import normal_dama
@@ -23,52 +24,73 @@ linha = {"0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8,
 qtd_cima = 15
 qtd_baixo = 15
 
-while qtd_cima != 0 or qtd_baixo !=0:
+if len(sys.argv) == 2:
+	print("Olá")
+
+else:
 
 	jogador_vez = input("Quem vai jogar agora? ")
-	jogada = input("Faça sua jogada: ")
 
-	col1 = coluna[jogada[0]]
-	lin1 = linha[jogada[1]]
-	col2 = coluna[jogada[4]]
-	lin2 = linha[jogada[5]]
+	while qtd_cima != 0 or qtd_baixo !=0:
 
-	#AQUI VAI SER CHECADO SE A PEÇA DA VEZ É NORMAL OU DAMA
-	if (tab[lin1][col1] == "@" or tab[lin1][col1] == "o"):
-		peca = "normal"
-		posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
-	else:
-		if tab[lin1][col1] == "&" or tab[lin1][col1] == "O":
-			peca = "dama"
+		#AQUI CONTAREI A QTDD DE PEÇAS ANTERIORES PARA NO FINAL DECIDIR SE O USUARIO JOGA NOVAMENTE OU NÂO
+		qtd_cima_anterior = qtd_cima
+		qtd_baixo_anterior = qtd_baixo
+
+		#AQUI SÓ POR QUESTÃO DE ORGANIZAÇÃO DA LEITURA DE QUEM VAI JOGAR NA HORA
+		if jogador_vez == "B":
+			jogada = input("Usuário de baixo, faça sua jogada: ")
+		else:
+			jogada = input("Usuário de cima, faça sua jogada: ")
+
+		col1 = coluna[jogada[0]]
+		lin1 = linha[jogada[1]]
+		col2 = coluna[jogada[4]]
+		lin2 = linha[jogada[5]]
+
+		#AQUI VAI SER CHECADO SE A PEÇA DA VEZ É NORMAL OU DAMA
+		if (tab[lin1][col1] == "@" or tab[lin1][col1] == "o"):
+			peca = "normal"
 			posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
 		else:
-			peca = "invalida"
-	#nova_pos(tab, peca, jogador_vez, lin1, col1, lin2, col2)
-	normal_dama(tab)
+			if tab[lin1][col1] == "&" or tab[lin1][col1] == "O":
+				peca = "dama"
+				posicao(peca, lin1, col1, lin2, col2, tab, jogador_vez, jogada)
+			else:
+				peca = "invalida"
 
-	#AQUI EU FIZ UM LAÇO PARA CONTAR O NUMERO DE PEÇAS
-	C = 0
-	B = 0
-	for i in range(0, 10):
-		for j in range(0, 10):
-			if tab[i][j] == "o" or tab[i][j] == "O":
-				C+=1
-			if tab[i][j] == "@" or tab[i][j] == "&":
-				B+=1
-	qtd_cima = C
-	qtd_baixo = B
+		normal_dama(tab)
 
-	print(qtd_cima)
-	print(qtd_baixo)
-	tabuleiro(tab)
-
-
-	if qtd_cima == 0:
-		print("O vencedor é o usuário de Baixo")
-	if qtd_baixo == 0:
-		print("O vencedor é o usuário de Cima")
+		#AQUI EU FIZ UM LAÇO PARA CONTAR O NUMERO DE PEÇAS
+		C = 0
+		B = 0
+		for i in range(0, 10):
+			for j in range(0, 10):
+				if tab[i][j] == "o" or tab[i][j] == "O":
+					C+=1
+				if tab[i][j] == "@" or tab[i][j] == "&":
+					B+=1
+		qtd_cima = C
+		qtd_baixo = B
 
 
+		#AQUI É PARA CONFERIR SE TEM CONDIÇÃO DE O USUÁRIO JOGAR NOVAMENTE
+		if jogador_vez == "B":
+			if qtd_cima_anterior != qtd_cima:
+				jogador_vez = "B"
+			else:
+				jogador_vez = "C"
+		else:
+			if qtd_baixo_anterior != qtd_baixo:
+				jogador_vez == "C"
+			else:
+				jogador_vez = "B"
 
+		print(qtd_cima)
+		print(qtd_baixo)
+		tabuleiro(tab)
 
-tabuleiro(tab)
+		if qtd_cima == 0:
+			print("O vencedor é o usuário de Baixo")
+		if qtd_baixo == 0:
+			print("O vencedor é o usuário de Cima")
