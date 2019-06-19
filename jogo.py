@@ -1,4 +1,6 @@
 #JOSÉ EDUARDO SOARES DE LIMA NOGUEIRA - 421873
+#ÍTALO FREIRE - 422025
+#MANOEL JOSÉ DE ALENCAR NETO - 472831
 
 import sys
 from tab import tabuleiro
