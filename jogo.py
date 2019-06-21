@@ -35,9 +35,12 @@ start = "S"
 while start == "S" or start == "s":
 	
 	if len(sys.argv) == 2:
-		print("Olá")
+		print("Modo offline")
+		print("Não fiz esse modo")
 
 	else:
+		print("Modo online")
+		print()
 
 		jogador_vez = input("Quem vai jogar agora? ")
 
